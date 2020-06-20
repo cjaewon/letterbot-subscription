@@ -3,4 +3,3 @@
 
 ### 화면
 ![image](https://user-images.githubusercontent.com/32125218/85199281-4d4acc00-b329-11ea-8c3b-1c9dbf9ca511.png)
-![image](https://user-images.githubusercontent.com/32125218/85199297-66537d00-b329-11ea-8e8c-a8634a6727ec.png)
