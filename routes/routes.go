@@ -1,6 +1,8 @@
 package routes
 
 import (
+	"strings"
+
 	"github.com/labstack/echo/v4"
 )
 
@@ -23,7 +25,9 @@ func subscribe(c echo.Context) error {
 		return err
 	}
 
-	if (body.URL)
+	if !strings.Contains(body.URL, "discordapp.com") || !strings.Contains(body.URL, "hooks.slack.com") {
+		return c.NoContent(403)
+	}
 
 	return nil
 }
