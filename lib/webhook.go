@@ -28,6 +28,13 @@ func WebhookValidate(webhookURL string) error {
 	return sendWebhook(webhookURL, data)
 }
 
+// SendLetter : send letter
+func SendLetter(webhookURL string) {
+	// lib.GetDate()
+	// lib.GetNews()
+	// lib.GetWeather()
+}
+
 func sendWebhook(webhookURL string, data interface{}) error {
 	jsonByte, _ := json.Marshal(data)
 	buff := bytes.NewBuffer(jsonByte)
