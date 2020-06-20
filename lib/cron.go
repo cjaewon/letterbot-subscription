@@ -9,7 +9,7 @@ import (
 
 // Cron : Run Send Letter Cron Job
 func Cron(db *gorm.DB) {
-	ticker := time.NewTicker(time.Second * 5)
+	ticker := time.NewTicker(time.Minute)
 
 	go func() {
 		for t := range ticker.C {
