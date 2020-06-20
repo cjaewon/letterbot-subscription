@@ -11,18 +11,31 @@
     justify-content: center;
 
     font-family: 'Noto Sans KR', sans-serif;
+
+    margin-bottom: 3rem;
   }
 
-  .bio span:first-child {
-    position: relative;
+  /* 데스크탑 화면 */
+  @media (min-width: 768px) {
+    .bio span:first-child {
+      position: relative;
 
-    left: 2.5rem;
+      left: 2.5rem;
+    }
+
+    .bio span:last-child {
+      position: relative;
+
+      top: 2.5rem;
+      left: -2.5rem;
+    }
   }
 
-  .bio span:last-child {
-    position: relative;
-
-    top: 2.5rem;
-    left: -2.5rem;
+  /* 모바일 화면 */
+  @media (max-width: 768px) {
+    .bio {
+      padding-right: 2.5rem;
+      padding-left: 2.5rem;
+    }
   }
 </style>

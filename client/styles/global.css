@@ -2,10 +2,11 @@
 
 html, body {
   margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
-:root {
-}
+/* :root {
+} */
 
 img.emoji {
   height: 1em;

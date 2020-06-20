@@ -1,4 +1,5 @@
 import '../styles/global.css';
+import '../styles/styles.css';
 import twemoji from 'twemoji';
 
 twemoji.parse(document.body, {
