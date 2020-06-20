@@ -19,5 +19,8 @@
   "devDependencies": {
     "posthtml-include": "^1.4.3",
     "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "twemoji": "^13.0.0"
   }
 }
