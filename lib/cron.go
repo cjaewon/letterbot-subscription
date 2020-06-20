@@ -19,8 +19,19 @@ func Cron(db *gorm.DB) {
 				db.Find(&webhooks)
 
 				log.WithField("webhook-count", len(webhooks)).Info("Send Webhook Start")
+
+				date := GetDate()
+				discordNews, slackNews := GetNews()
+				weather, temp := GetWeather()
+
 				for _, webhook := range webhooks {
-					go SendLetter(webhook.URL)
+					go SendLetter(webhook.URL, parsedType{
+						date:        date,
+						discordNews: discordNews,
+						slackNews:   slackNews,
+						weather:     weather,
+						temp:        temp,
+					}, db)
 				}
 			}
 		}

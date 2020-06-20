@@ -5,9 +5,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"letterbot-subscription/database/models"
 	"net/http"
 	"strings"
 
+	"github.com/jinzhu/gorm"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -31,36 +33,40 @@ func WebhookValidate(webhookURL string) error {
 	return sendWebhook(webhookURL, data)
 }
 
-// SendLetter : send letter
-func SendLetter(webhookURL string) {
-	var err error
+type parsedType struct {
+	date        string
+	discordNews string
+	slackNews   string
+	weather     string
+	temp        string
+}
 
-	date := GetDate()
-	discordNews, slackNews := GetNews()
-	weather, temp := GetWeather()
+// SendLetter : send letter
+func SendLetter(webhookURL string, parsed parsedType, db *gorm.DB) {
+	var err error
 
 	if strings.Contains(webhookURL, "discordapp.com") {
 		err = sendWebhook(webhookURL, map[string]interface{}{
 			"username":   "편지봇",
 			"avatar_url": "https://cdn.discordapp.com/attachments/683175932873539589/689459371151065088/message-3592640_1280.jpg",
-			"content":    fmt.Sprintf("📨 %s 편지가 왔어요!", date),
+			"content":    fmt.Sprintf("📨 %s 편지가 왔어요!", parsed.date),
 
 			"embeds": []map[string]interface{}{
 				{
 					"fields": []map[string]interface{}{
 						{
 							"name":   "📅 날짜 / 한국",
-							"value":  date,
+							"value":  parsed.date,
 							"inline": true,
 						},
 						{
 							"name":   "🏞️ 날씨 / 부산",
-							"value":  weather,
+							"value":  parsed.weather,
 							"inline": true,
 						},
 						{
 							"name":   "🌡 온도 / 부산",
-							"value":  temp,
+							"value":  parsed.temp,
 							"inline": true,
 						},
 					},
@@ -71,7 +77,7 @@ func SendLetter(webhookURL string) {
 				},
 				{
 					"title":       "📰 뉴스 / 구글",
-					"description": discordNews,
+					"description": parsed.discordNews,
 				},
 			},
 		})
@@ -80,22 +86,22 @@ func SendLetter(webhookURL string) {
 			"attachments": []map[string]interface{}{
 				{
 					"color":   "#928BFF",
-					"pretext": fmt.Sprintf("📨 %s 편지가 왔어요!", date),
+					"pretext": fmt.Sprintf("📨 %s 편지가 왔어요!", parsed.date),
 
 					"fields": []map[string]interface{}{
 						{
 							"title": "📅 날짜 / 한국",
-							"value": date,
+							"value": parsed.date,
 							"short": true,
 						},
 						{
 							"name":  "🏞️ 날씨 / 부산",
-							"value": weather,
+							"value": parsed.weather,
 							"short": true,
 						},
 						{
 							"name":  "🌡 온도 / 부산",
-							"value": temp,
+							"value": parsed.temp,
 							"short": true,
 						},
 					},
@@ -107,7 +113,7 @@ func SendLetter(webhookURL string) {
 						{
 							"type":  "mrkdwn",
 							"title": "📰 뉴스 / 구글",
-							"value": slackNews,
+							"value": parsed.slackNews,
 						},
 					},
 				},
@@ -117,6 +123,8 @@ func SendLetter(webhookURL string) {
 
 	if err.Error() != "Undefined WebhookUrl" {
 		log.WithField("webhook-url", webhookURL).Error("Send Failed")
+		log.WithField("webhook-url", webhookURL).Error("Delete WebhookURL")
+		db.Delete(&models.Webhook{}, "url = ?", webhookURL)
 	}
 
 }
