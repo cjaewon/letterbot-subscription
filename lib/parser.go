@@ -59,7 +59,6 @@ func GetWeather() (weather string, temp string) {
 	city := "Seoul"
 
 	url := fmt.Sprintf("http://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s&units=metric", city, token)
-	fmt.Println(url)
 
 	resp, err := http.Get(url)
 	if err != nil {
@@ -69,7 +68,7 @@ func GetWeather() (weather string, temp string) {
 	defer resp.Body.Close()
 
 	type ResponseType struct {
-		Weather map[int]struct {
+		Weather []struct {
 			ID int `json:"id"`
 		} `json:"weather"`
 		Main struct {
