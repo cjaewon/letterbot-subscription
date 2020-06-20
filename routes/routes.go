@@ -1,7 +1,6 @@
 package routes
 
 import (
-	"fmt"
 	"strings"
 
 	"letterbot-subscription/database/models"
@@ -9,6 +8,7 @@ import (
 
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo/v4"
+	log "github.com/sirupsen/logrus"
 )
 
 // Routes : Init Routes
@@ -37,7 +37,6 @@ func subscribe(c echo.Context) error {
 
 	// exits check
 	if err := db.Where("url = ?", body.WebhookURL).First(&models.Webhook{}).Error; err == nil {
-		fmt.Println(err)
 		return c.NoContent(409)
 	}
 
@@ -50,6 +49,7 @@ func subscribe(c echo.Context) error {
 	}
 
 	db.Create(&webhook)
+	log.WithField("webhook_url", body.WebhookURL).Info("Create Webhook")
 
 	return nil
 }

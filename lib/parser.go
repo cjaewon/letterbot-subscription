@@ -8,6 +8,8 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // GetDate : get date
@@ -25,7 +27,7 @@ func GetDate() string {
 func GetNews() (discord string, slack string) {
 	resp, err := http.Get("https://news.google.com/rss?hl=ko&gl=KR&ceid=KR:ko")
 	if err != nil {
-		// log
+		log.Error("Get News Failed")
 	}
 
 	defer resp.Body.Close()
@@ -62,7 +64,7 @@ func GetWeather() (weather string, temp string) {
 
 	resp, err := http.Get(url)
 	if err != nil {
-		// log
+		log.Error("Get Weather Failed")
 	}
 
 	defer resp.Body.Close()

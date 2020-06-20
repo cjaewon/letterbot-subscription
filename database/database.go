@@ -8,6 +8,7 @@ import (
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"github.com/labstack/gommon/log"
 )
 
 // Connect : Database connect
@@ -24,6 +25,7 @@ func Connect() *gorm.DB {
 	}
 
 	models.Migrate(db)
+	log.Info("Connected Database")
 
 	return db
 }

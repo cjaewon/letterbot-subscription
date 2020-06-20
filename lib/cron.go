@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/jinzhu/gorm"
+	log "github.com/sirupsen/logrus"
 )
 
 // Cron : Run Send Letter Cron Job
@@ -17,6 +18,7 @@ func Cron(db *gorm.DB) {
 				var webhooks []models.Webhook
 				db.Find(&webhooks)
 
+				log.WithField("webhook-count", len(webhooks)).Info("Send Webhook Start")
 				for _, webhook := range webhooks {
 					go SendLetter(webhook.URL)
 				}
