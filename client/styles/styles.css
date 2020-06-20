@@ -8,3 +8,45 @@
   flex-direction: column;
   align-items: center;
 }
+
+.background-img {
+  width: 560px;
+  height: 560px;
+
+  position: relative;
+  top: -150px;
+  left: 250px;
+
+  z-index: -1;
+}
+
+@media (max-width: 1800px) {
+  .background-img {
+    top: -150px;
+    left: 200px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .background-img {
+    top: -150px;
+    left: 100px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .background-img {
+    top: -150px;
+    left: 50px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .background-img {
+    width: 420px;
+    height: 420px;
+
+    top: -150px;
+    left: 10px;
+  }
+}

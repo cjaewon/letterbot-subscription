@@ -1,0 +1,59 @@
+<div class="container">
+  <h3>특징</h3>
+  <div class="row">
+    <span>📅 날짜</span>
+    <span>오늘의 날짜를 알려드립니다.</span>
+  </div>
+  <div class="row">
+    <span>🏞️날씨</span>
+    <span>서울 지역의 오늘 날씨를 알려드립니다.</span>
+  </div>
+  <div class="row">
+    <span>🌡️ 온도</span>
+    <span>서울 지역의 오늘 온도를 알려드립니다.</span>
+  </div>
+  <div class="row">
+    <span> 📰 뉴스</span>
+    <span>핫한 뉴스를 뽑아서 정리하여 알려드립니다.</span>
+  </div>
+</div>
+
+<style>
+  .container {
+    width: 27rem;
+
+    margin-top: 2rem;
+  }
+
+  .container h3 {
+    margin-top: 0.15rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+
+    border-bottom: 1px solid #E2E8F0;
+  }
+
+
+  @media (max-width: 760px) {
+    .container {
+      width: 25rem;
+    }
+
+    .row span {
+      font-weight: bold;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .container {
+      width: 20rem;
+    }
+  }
+</style>
