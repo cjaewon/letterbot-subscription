@@ -16,5 +16,5 @@ func main() {
 	e.Validator = &lib.CustomValidator{Validator: validator.New()}
 	routes.Routes(e.Group("/api"))
 
-	e.Logger.Fatal(e.Start(":3000"))
+	e.Logger.Fatal(e.Start("localhost:3000"))
 }

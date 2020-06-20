@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "parcel": "parcel client/index.html"
+    "start": "go run main.go",
+    "parcel": "parcel client/index.html",
+    "parcel:watch": "parcel watch client/index.html"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,8 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "toastify-js": "^1.8.0",
     "twemoji": "^13.0.0"
   }
 }

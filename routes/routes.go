@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"letterbot-subscription/lib"
 	"strings"
 
 	"github.com/labstack/echo/v4"
@@ -8,12 +9,12 @@ import (
 
 // Routes : Init Routes
 func Routes(g *echo.Group) {
-	g.GET("/subscribe", subscribe)
+	g.POST("/subscribe", subscribe)
 }
 
 func subscribe(c echo.Context) error {
 	type RequestBody struct {
-		URL string `json:"url" validate:"required"`
+		WebhookURL string `json:"url" validate:"required"`
 	}
 
 	var body RequestBody
@@ -25,7 +26,11 @@ func subscribe(c echo.Context) error {
 		return err
 	}
 
-	if !strings.Contains(body.URL, "discordapp.com") || !strings.Contains(body.URL, "hooks.slack.com") {
+	if !(strings.Contains(body.WebhookURL, "discordapp.com") || strings.Contains(body.WebhookURL, "hooks.slack.com")) {
+		return c.NoContent(403)
+	}
+
+	if err := lib.WebhookValidate(body.WebhookURL); err != nil {
 		return c.NoContent(403)
 	}
 

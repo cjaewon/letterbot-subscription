@@ -1,9 +1,8 @@
-<div class="center">
-  <form id="form">
-    <input id="webhook-input" placeholder="웹훅 주소를 입력해주세요."></input>
-    <button>구독하기</button>
-  </form>
-</div>
+<form id="form">
+  <input id="webhook-input" placeholder="웹훅 주소를 입력해주세요."></input>
+  <button id="webhook-submit">구독하기</button>
+</form>
+
 <style>
   form {
     display: flex;
@@ -42,5 +41,13 @@
   button:hover {
     background: #667EEA; 
     color: white;
+  }
+
+  button:disabled {
+    cursor: default;
+
+    color: rgb(222, 226, 230);
+    border-color: rgb(173, 181, 189);
+    background: rgb(173, 181, 189);
   }
 </style>
