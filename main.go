@@ -13,10 +13,6 @@ import (
 
 func init() {
 	godotenv.Load(".env")
-
-	lib.SendLetter("https://discordapp.com/api/webhooks/689489066068279329/aDKBCdva3iu-6NYX1I2Qrt6Kyo9i6QFdrZdqfaOFctF1JnnGJKFqfoC4K0Pdr79fKDdp")
-
-	panic(1)
 }
 
 func main() {

@@ -35,8 +35,6 @@ func SendLetter(webhookURL string) {
 	discordNews, slackNews := GetNews()
 	weather, temp := GetWeather()
 
-	fmt.Println(weather)
-
 	if strings.Contains(webhookURL, "discordapp.com") {
 		sendWebhook(webhookURL, map[string]interface{}{
 			"username":   "편지봇",
