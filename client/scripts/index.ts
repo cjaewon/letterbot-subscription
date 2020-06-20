@@ -1,6 +1,8 @@
+import twemoji from 'twemoji';
+
 import '../styles/global.css';
 import '../styles/styles.css';
-import twemoji from 'twemoji';
+import './submit';
 
 twemoji.parse(document.body, {
   callback: function(icon, options, variant) {
