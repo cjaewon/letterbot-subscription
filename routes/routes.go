@@ -1,9 +1,13 @@
 package routes
 
 import (
-	"letterbot-subscription/lib"
+	"fmt"
 	"strings"
 
+	"letterbot-subscription/database/models"
+	"letterbot-subscription/lib"
+
+	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo/v4"
 )
 
@@ -18,6 +22,7 @@ func subscribe(c echo.Context) error {
 	}
 
 	var body RequestBody
+	db, _ := c.Get("db").(*gorm.DB)
 
 	if err := c.Bind(&body); err != nil {
 		return err
@@ -30,9 +35,21 @@ func subscribe(c echo.Context) error {
 		return c.NoContent(403)
 	}
 
+	// exits check
+	if err := db.Where("url = ?", body.WebhookURL).First(&models.Webhook{}).Error; err == nil {
+		fmt.Println(err)
+		return c.NoContent(409)
+	}
+
 	if err := lib.WebhookValidate(body.WebhookURL); err != nil {
 		return c.NoContent(403)
 	}
+
+	webhook := models.Webhook{
+		URL: body.WebhookURL,
+	}
+
+	db.Create(&webhook)
 
 	return nil
 }
