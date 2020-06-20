@@ -13,6 +13,7 @@ import (
 
 func init() {
 	godotenv.Load(".env")
+	lib.Cron()
 }
 
 func main() {
