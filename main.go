@@ -30,5 +30,5 @@ func main() {
 
 	routes.Routes(e.Group("/api"))
 
-	e.Logger.Fatal(e.Start("localhost:3000"))
+	e.Logger.Fatal(e.Start("0.0.0.0:3000"))
 }
