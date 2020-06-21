@@ -20,10 +20,10 @@ form.onsubmit = async e => {
     successToastify('구독이 완료되었습니다!', 10000);
   } catch (e) {
     if (e.response.status === 409)
-      return errorToastify('이미 등록 된 웹훅 URL 이에요');
+      errorToastify('이미 등록 된 웹훅 URL 이에요');
     else if (e.response.status === 403)
-      return errorToastify('웹훅 URL이 정확한지 확인해주세요');
-    
+      errorToastify('웹훅 URL이 정확한지 확인해주세요');
+    else
       errorToastify('알 수 없는 오류가 발생했어요.');
   }
 
