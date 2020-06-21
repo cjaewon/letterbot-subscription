@@ -6,6 +6,19 @@
 ### 🏞️ 화면
 ![image](https://user-images.githubusercontent.com/32125218/85199281-4d4acc00-b329-11ea-8c3b-1c9dbf9ca511.png)
 
+### ⬇️ 설치
+
+#### Run
+```bash
+go run main.go
+```
+
+#### Compile html
+```bash
+npm install parcel-bundler
+npm run parcel / npm run pacel:watch
+```
+
 ### 🛠️ 기술 스택
 - echo (golang web framework)
 - parcel
