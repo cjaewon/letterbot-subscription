@@ -42,7 +42,7 @@ type parsedType struct {
 }
 
 // SendLetter : send letter
-func SendLetter(webhookURL string, parsed parsedType, db *gorm.DB) {
+func SendLetter(webhookURL string, parsed *parsedType, db *gorm.DB) {
 	var err error
 
 	if strings.Contains(webhookURL, "discordapp.com") {

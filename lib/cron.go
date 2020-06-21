@@ -24,14 +24,16 @@ func Cron(db *gorm.DB) {
 				discordNews, slackNews := GetNews()
 				weather, temp := GetWeather()
 
+				parsed := parsedType{
+					date:        date,
+					discordNews: discordNews,
+					slackNews:   slackNews,
+					weather:     weather,
+					temp:        temp,
+				}
+
 				for _, webhook := range webhooks {
-					go SendLetter(webhook.URL, parsedType{
-						date:        date,
-						discordNews: discordNews,
-						slackNews:   slackNews,
-						weather:     weather,
-						temp:        temp,
-					}, db)
+					go SendLetter(webhook.URL, &parsed, db)
 				}
 			}
 		}
