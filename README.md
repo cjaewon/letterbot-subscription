@@ -15,7 +15,7 @@ go run main.go
 
 #### Compile html
 ```bash
-npm install parcel-bundler
+npm install -g parcel-bundler
 npm run parcel / npm run pacel:watch
 ```
 
