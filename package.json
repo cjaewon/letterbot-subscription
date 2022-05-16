@@ -23,7 +23,7 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "toastify-js": "^1.8.0",
     "twemoji": "^13.0.0"
   }
